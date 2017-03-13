@@ -16,7 +16,6 @@ function Grid() {
         this.grid[i][j] = 0;
       }
     }
-
     this.gridUp = JSON.parse(JSON.stringify(this.grid));
     this.gridAlive = JSON.parse(JSON.stringify(this.grid));
   }
@@ -49,7 +48,6 @@ function Grid() {
         }
         neighbors -= this.grid[x][y];
         this.gridAlive[x][y] = neighbors;
-        console.log(neighbors);
       }
     }
   }
@@ -84,79 +82,3 @@ function Grid() {
     }
   }
 }
-
-
-
-
-
-
-/*
-
-function checkNeighbors() {
-  for (i = 0; i < grid.length; i++) {
-    for (j = 0; j < grid[i].length; j++) {
-
-      isAlive = 0;
-
-      if (i > 0 && j > 0) {
-        if (i < (gridS -1) && j < gridH - 1) {
-          for (k = 0; k < neighbors.length; k++) {
-            if (grid[i + neighbors[k][0]][j + neighbors[k][1]]) {
-              isAlive++;
-            }
-          }
-        }
-      }
-
-      gridAlive[i][j] = isAlive;
-    }
-  }
-}
-
-
-function updateGrid() {
-  gridUp = grid;
-  for (i = 0; i < grid.length; i++) {
-    for (j = 0; j < grid[i].length; j++) {
-      if (grid[i][j]) {
-        // see if this cell should die
-        console.log("alive" + gridAlive[i][j]);
-        if (gridAlive[i][j] === 2 || gridAlive[i][j] == 3) {
-          // extant
-          gridUp[i][j] = 1;
-        } else {
-          // extinct
-
-          gridUp[i][j] = 0;
-        }
-      } else {
-        // see if this empty cell should come alive
-        if (gridAlive[i][j] === 3) {
-          // birth
-          gridUp[i][j] = 1;
-        } else {
-          // staying unborn
-          gridUp[i][j] = 0;
-        }
-      }
-    }
-  }
-
-  grid = gridUp;
-}
-*/
-
-
-
-/* Array for checking neighbors
-  neighbors = [
-    [-1, -1],
-    [-1, 0],
-    [-1, +1],
-    [0, -1],
-    [0, +1],
-    [+1, -1],
-    [+1, 0],
-    [+1, +1]
-  ];
-  */

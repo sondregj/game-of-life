@@ -2,8 +2,10 @@
 
 function preload() {
   futura_pt_book = loadFont('fonts/futura-pt-book.ttf');
-  futura_pt_book_oblique = loadFont('fonts/futura-pt-book-oblique.ttf');
-  futura_pt_medium = loadFont('fonts/futura-pt-medium.ttf');
+
+  // Unused fonts
+  //futura_pt_book_oblique = loadFont('fonts/futura-pt-book-oblique.ttf');
+  //futura_pt_medium = loadFont('fonts/futura-pt-medium.ttf');
 }
 
 function setup() {
