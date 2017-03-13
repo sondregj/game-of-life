@@ -31,7 +31,7 @@ function setup() {
 
   // Initialize grid
   grid = new Grid();
-  grid.init(8);
+  grid.init(15);
 }
 
 
@@ -39,12 +39,10 @@ function draw() {
   //Reset
   background(255);
 
-
   // Update grid if pause is off
-  grid.updateNeighbors();
-  if (grid.running && frameCount % 30 == 0) {
+  if (grid.running && frameCount % 15 == 0) {
+    grid.updateNeighbors();
     grid.update();
-    console.log("Grid updated.")
   }
 
   // Render grid

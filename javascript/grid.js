@@ -7,29 +7,18 @@ function Grid() {
   this.grid = [];
   this.liveCells = 0;
 
-
   this.init = function(x) {
     this.gridS = x;
     // Set up grid
     for (i = 0; i < this.gridS; i++) {
       this.grid[i] = [];
-      //this.gridUp[i] = [];
-      //this.gridAlive[i] = [];
       for (j = 0; j < this.gridS; j++) {
         this.grid[i][j] = 0;
-        //this.gridUp[i][j] = 0;
-        //this.gridAlive[i][j] = 0;
       }
     }
 
     this.gridUp = JSON.parse(JSON.stringify(this.grid));
     this.gridAlive = JSON.parse(JSON.stringify(this.grid));
-
-    // Make a copy of the grid and paste it in another grid
-    //this.gridUp = this.grid.slice();
-    //this.gridAlive = this.grid.slice();
-    //arrayCopy(this.grid, 0, this.gridUp, 0, this.grid.length);
-    //arrayCopy(this.grid, 0, this.gridAlive, 0, this.grid.length);
   }
 
   this.addDot = function(x, y) {
@@ -74,8 +63,7 @@ function Grid() {
         else this.gridUp[x][y] = this.grid[x][y];
       }
     }
-
-    var temp = [];
+    this.grid = JSON.parse(JSON.stringify(this.gridUp));
   }
 
 
@@ -88,8 +76,10 @@ function Grid() {
           fill(230, 230, 230);
         }
         rect(((i * this.size / this.gridS) + this.woffset), ((j * this.size / this.gridS) + this.hoffset), (600 / this.gridS) - 2, (600 / this.gridS) - 2);
-        fill(100, 100, 100);
-        text(this.gridAlive[i][j], ((i * this.size / this.gridS) + this.woffset + 15), ((j * this.size / this.gridS) + this.hoffset + 20));
+
+        // Uncomment the lines below to show number of live neighbors on grid
+        //fill(100, 100, 100);
+        //text(this.gridAlive[i][j], ((i * this.size / this.gridS) + this.woffset + 15), ((j * this.size / this.gridS) + this.hoffset + 20));
       }
     }
   }
