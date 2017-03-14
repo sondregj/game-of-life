@@ -2,13 +2,15 @@
 
 function preload() {
   futura_pt_book = loadFont('fonts/futura-pt-book.ttf');
+  futura_pt_medium = loadFont('fonts/futura-pt-medium.ttf');
 
   // Unused fonts
   //futura_pt_book_oblique = loadFont('fonts/futura-pt-book-oblique.ttf');
-  //futura_pt_medium = loadFont('fonts/futura-pt-medium.ttf');
 }
 
 function setup() {
+  updated = 1;
+  updateFreq = 1;
   minwidth = 930;
   minheight = 620;
   if (windowWidth >= minwidth) {
@@ -23,7 +25,7 @@ function setup() {
 
   // Initial text setup
   textSize(32);
-  textFont(futura_pt_book);
+  textFont(futura_pt_medium);
   fill(0);
   noStroke();
   textAlign(CENTER);
@@ -33,26 +35,34 @@ function setup() {
 
   // Initialize grid
   grid = new Grid();
-  grid.init(15);
+  grid.init(80);
 }
 
 
 function draw() {
-  //Reset
-  background(255);
+  if (updated || (grid.running && frameCount % updateFreq == 0)) { // If anything is updated or grid is running, run
+    //Reset
+    background(255);
 
-  // Update grid if pause is off
-  if (grid.running && frameCount % 15 == 0) {
-    grid.updateNeighbors();
-    grid.update();
+    // Update grid if pause is off
+    if (grid.running && frameCount % updateFreq == 0) {
+      grid.updateNeighbors();
+      grid.update();
+    }
+
+    // Render grid
+    grid.render();
+
+    //Print UI
+    ui.update();
+    ui.render();
+
+    //Reset updated variable
+    if (updated !== 0) {
+      updated -= 1 / 5;
+    }
+
   }
-
-  // Render grid
-  grid.render();
-
-  //Print UI
-  ui.update();
-  ui.render();
 }
 
 function keyReleased() {
@@ -62,11 +72,17 @@ function keyReleased() {
     } else {
       grid.running = 1;
     }
+
+    // Update on keypress
+    var updated = 1;
   }
 }
 
 function mouseReleased() {
   grid.addDot(mouseX, mouseY);
+
+  // Update on mouseclick
+  updated = 1;
 }
 
 function windowResized() {
@@ -78,4 +94,7 @@ function windowResized() {
   }
   grid.woffset = (width - ui.w - grid.size) / 2 + ui.w;
   grid.hoffset = (height - grid.size) / 2;
+
+  // Update on resize
+  updated = 1;
 }

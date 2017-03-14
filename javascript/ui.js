@@ -22,10 +22,12 @@ function UI() {
 
     // Header text
     textSize(48);
+    textFont(futura_pt_medium);
     fill(0);
     text("Game of Life", this.w / 2, 60);
 
     textSize(24);
+    textFont(futura_pt_book);
     if (grid.running) {
       text("Running", this.w / 2, 150);
     } else {
