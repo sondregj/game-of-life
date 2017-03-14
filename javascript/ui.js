@@ -1,5 +1,5 @@
 function UI() {
-  this.w = 300;
+  this.w = 400;
   this.percentageAlive = 0;
 
   this.update = function() {
@@ -18,13 +18,13 @@ function UI() {
     // UI background
     noStroke();
     fill(220);
-    rect(0, 0, this.w, height);
+    //rect(0, 0, this.w, height);
 
     // Header text
-    textSize(48);
+    textSize(60);
     textFont(futura_pt_medium);
     fill(0);
-    text("Game of Life", this.w / 2, 60);
+    text("Game of Life", this.w / 2, 80);
 
     textSize(24);
     textFont(futura_pt_book);

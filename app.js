@@ -11,8 +11,10 @@ function preload() {
 function setup() {
   updated = 1;
   updateFreq = 1;
+
   minwidth = 930;
   minheight = 620;
+
   if (windowWidth >= minwidth) {
     var w = windowWidth;
     var h = windowHeight;
@@ -21,7 +23,7 @@ function setup() {
     var h = minheight;
   }
   createCanvas(w, h, P2D);
-  frameRate(30);
+  frameRate(60);
 
   // Initial text setup
   textSize(32);
@@ -35,14 +37,14 @@ function setup() {
 
   // Initialize grid
   grid = new Grid();
-  grid.init(80);
+  grid.init(50);
 }
 
-
 function draw() {
-  if (updated || (grid.running && frameCount % updateFreq == 0)) { // If anything is updated or grid is running, run
+  if (updated || (grid.running && (frameCount % updateFreq == 0))) { // If anything is updated or grid is running, run
+    console.log(1);
     //Reset
-    background(255);
+    background(255, 150);
 
     // Update grid if pause is off
     if (grid.running && frameCount % updateFreq == 0) {
@@ -58,43 +60,11 @@ function draw() {
     ui.render();
 
     //Reset updated variable
-    if (updated !== 0) {
-      updated -= 1 / 5;
+    if (updated > 0) {
+      updated -= 0.2;
     }
-
-  }
-}
-
-function keyReleased() {
-  if (keyCode == 32) {
-    if (grid.running == 1) {
-      grid.running = 0;
-    } else {
-      grid.running = 1;
+    if (updated <= 0) {
+      updated = 0;
     }
-
-    // Update on keypress
-    var updated = 1;
   }
-}
-
-function mouseReleased() {
-  grid.addDot(mouseX, mouseY);
-
-  // Update on mouseclick
-  updated = 1;
-}
-
-function windowResized() {
-  // Add rule for minimum window size | 930 x 620
-  if (windowWidth >= minwidth) {
-    resizeCanvas(windowWidth, windowHeight);
-  } else {
-    resizeCanvas(minwidth, minheight);
-  }
-  grid.woffset = (width - ui.w - grid.size) / 2 + ui.w;
-  grid.hoffset = (height - grid.size) / 2;
-
-  // Update on resize
-  updated = 1;
 }

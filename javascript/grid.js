@@ -69,7 +69,7 @@ function Grid() {
     for (var i = 0; i < this.grid.length; i++) {
       for (var j = 0; j < this.grid[i].length; j++) {
         if (this.grid[i][j] == 1) {
-          fill(220, 0, 140);
+          fill(0); //220, 0, 140);
         } else {
           fill(230, 230, 230);
         }
