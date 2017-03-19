@@ -6,6 +6,7 @@ function Grid() {
   this.running = 0;
   this.grid = [];
   this.liveCells = 0;
+  this.generation = 1;
 
   this.init = function(x) {
     this.gridS = x;
@@ -18,6 +19,11 @@ function Grid() {
     }
     this.gridUp = JSON.parse(JSON.stringify(this.grid));
     this.gridAlive = JSON.parse(JSON.stringify(this.grid));
+  }
+
+  this.reset = function() {
+    this.init(50);
+    this.generation = 1;
   }
 
   this.addDot = function(x, y) {
@@ -62,6 +68,7 @@ function Grid() {
       }
     }
     this.grid = JSON.parse(JSON.stringify(this.gridUp));
+    this.generation++;
   }
 
 
@@ -69,7 +76,8 @@ function Grid() {
     for (var i = 0; i < this.grid.length; i++) {
       for (var j = 0; j < this.grid[i].length; j++) {
         if (this.grid[i][j] == 1) {
-          fill(0); //220, 0, 140);
+          //fill(0); //220, 0, 140);
+          fill(131, 0, 0);
         } else {
           fill(230, 230, 230);
         }

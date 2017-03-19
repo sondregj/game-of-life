@@ -21,6 +21,8 @@ function UI() {
     //rect(0, 0, this.w, height);
 
     // Header text
+    textAlign(CENTER);
+
     textSize(60);
     textFont(futura_pt_medium);
     fill(0);
@@ -36,6 +38,14 @@ function UI() {
 
     textSize(16);
     text("Press spacebar to toggle play/pause", this.w / 2, height - 100);
+
+    textAlign(LEFT);
+    textFont(monospace);
+    text("generation " + grid.generation, this.w / 4, 220);
+
+    textAlign(CENTER);
+    textFont(futura_pt_book);
+
 
     fill(220, 0, 140);
     rect(this.w / 2 - 30, height - 250, 60, -300 * this.percentageAlive / 100);

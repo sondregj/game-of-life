@@ -8,6 +8,10 @@ function keyReleased() {
 
     // Update on keypress
     updated = 1;
+  } else if (keyCode == 82) {
+    grid.reset();
+    updated = 1;
+    grid.running = 0;
   }
 }
 
